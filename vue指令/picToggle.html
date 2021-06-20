@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #picBox {
+        position: relative;
+        width: 600px;
+        height: 500px;
+      }
+      img {
+        width: 600px;
+        height: 400px;
+      }
+      .left {
+        position: absolute;
+        left: 0;
+        top: 200px;
+      }
+      .right {
+        position: absolute;
+        right: 0;
+        top: 200px;
+      }
+      /* a {
+        border: 1px solid red;
+      } */
+      a img {
+        width: 30px;
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="picBox">
+      <h2>pic Switch</h2>
+      <img :src="imgArr[index]" alt="" />
+      <!-- <img src="./img/1.jpeg" alt="" /> -->
+      <a class="left" @click="prev" href="javascript:void(0)"
+        ><img src="./img/left.png" alt=""
+      /></a>
+      <a class="right" @click="next" href="javascript:void(0)"
+        ><img src="./img/right.png" alt=""
+      /></a>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="./picToggle.js"></script>
+</html>

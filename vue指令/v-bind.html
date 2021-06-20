@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .active {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <img v-bind:src="imgSrc" alt="" height="300px" width="300px" />
+      <br />
+      <img
+        :src="imgSrc"
+        :title="imgTitle+'!!!'"
+        :class="isActive?'active':''"
+        alt=""
+        height="300px"
+        width="300px"
+        @click="toogleActive"
+      />
+      <br />
+      <img
+        :src="imgSrc"
+        :title="imgTitle+'!!!'"
+        :class="{active:isActive}"
+        alt=""
+        height="300px"
+        width="300px"
+        @click="toogleActive"
+      />
+
+      <br />
+      <!-- <img v-bind:class="isActive?'active:''" alt="" />
+      <img v-bind:class="{active:isActive}" alt="" /> -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          imgSrc:
+            "https://images.unsplash.com/photo-1565538420870-da08ff96a207?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2250&q=80",
+          isActive: false,
+          imgTitle: "lovely pic",
+        },
+        methods: {
+          toogleActive: function () {
+            this.isActive = !this.isActive;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
