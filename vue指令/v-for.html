@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="button" value="添加数据" @click="add" />
+      <input type="button" value="移除数据" @click="remove" />
+      <h2 v-for="(vegObj,index) in vegs" v-bind:title="vegObj.name">
+        第{{index+1}} 个水果:{{vegObj.name}}
+      </h2>
+      <h2 v-for="item in arr">中国的城市{{item}}</h2>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          arr: ["北京", "shanghai", "guangzhou", "shenzhen"],
+          vegs: [{ name: "banana" }, { name: "apple" }],
+        },
+        methods: {
+          add: function () {
+            this.vegs.push({ name: "orange" });
+          },
+          remove: function () {
+            this.vegs.shift();
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

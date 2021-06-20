@@ -1,0 +1,14 @@
+html,
+body {
+  height: 100%;
+}
+
+#todolist {
+  margin: 0 auto;
+}
+
+.removeSpan,
+.text-muted {
+  color: black;
+  cursor: pointer;
+}

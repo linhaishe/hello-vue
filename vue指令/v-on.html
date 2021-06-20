@@ -10,6 +10,13 @@
     <div id="app">
       <input type="button" value="事件绑定" v-on:click="doIt" />
       <input type="button" value="事件绑定简写" @click="doIt" />
+      <input type="text" @keyup.enter="sayhi" />
+      <input
+        type="button"
+        value="传参 数据console可见"
+        @click="passArgument(111,'hi friends')"
+      />
+
       <h2 @click="changeFood">{{food}}</h2>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -26,6 +33,12 @@
           },
           changeFood: function () {
             this.food += "好好吃";
+          },
+          sayHi: function () {
+            alert("吃了没");
+          },
+          passArgument: function (p1, p2) {
+            console.log(p1, p2);
           },
         },
       });
