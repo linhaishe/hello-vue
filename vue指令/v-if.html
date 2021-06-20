@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="button" value="切换显示状态" @click="toogleIsShow" />
+      <input type="button" value="温度累加" @click="addTem" />
+
+      <p v-if="true">this is the use of boolean</p>
+      <p v-if="isShow">
+        this is the use of v-if with
+        function,这是直接控制dom树，元素会被直接从dom树中移除
+      </p>
+      <p v-show="isShow">
+        this is the use of v-show with
+        function，这个指令是直接控制样式，将display:none,元素在dom树还是存在
+      </p>
+
+      <h2 v-if="temperature>=35">使用表达式判断,热死了</h2>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          isShow: false,
+          temperature: 34,
+        },
+        methods: {
+          toogleIsShow: function () {
+            this.isShow = !this.isShow;
+          },
+          addTem: function () {
+            this.temperature++;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

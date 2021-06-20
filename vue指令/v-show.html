@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="button" value="切换显示状态" @click="changIsShow" />
+      <input type="button" value="年龄累加" @click="addAge" />
+
+      <img
+        v-show="isShow"
+        src="https://images.unsplash.com/photo-1565538420870-da08ff96a207?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2250&q=80"
+        alt=""
+        height="300px"
+        width="300px"
+      />
+      <img
+        v-show="age>=18"
+        src="https://images.unsplash.com/photo-1565538420870-da08ff96a207?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2250&q=80"
+        alt=""
+        height="300px"
+        width="300px"
+      />
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          isShow: false,
+          age: 17,
+        },
+        methods: {
+          changIsShow: function () {
+            this.isShow = !this.isShow;
+          },
+          addAge: function () {
+            this.age++;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
