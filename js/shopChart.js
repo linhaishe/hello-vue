@@ -5,6 +5,7 @@ var app = new Vue({
   data: {
     message: "",
     sumTotal: 0,
+
     shopList: [
       { name: "手机", num: 1, price: 1000 },
       { name: "电脑", num: 1, price: 2000 },

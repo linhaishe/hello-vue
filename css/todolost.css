@@ -12,3 +12,12 @@ body {
   color: black;
   cursor: pointer;
 }
+
+.bi-hand-thumbs-up,
+.bi-hand-thumbs-up-fill {
+  cursor: pointer;
+}
+
+#update {
+  cursor: pointer;
+}
