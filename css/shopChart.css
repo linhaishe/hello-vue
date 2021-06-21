@@ -1,0 +1,18 @@
+html,
+body {
+  height: 100%;
+}
+
+.minus-btn {
+  padding: 3px;
+  margin-right: 10px;
+}
+
+.add-btn {
+  padding: 3px;
+  margin-left: 10px;
+}
+
+.removeSpan {
+  cursor: pointer;
+}
