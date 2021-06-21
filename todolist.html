@@ -36,7 +36,7 @@
             aria-describedby="inputGroup-sizing-lg"
             v-model="message"
             @keyup.enter="addList"
-            value="plz type things"
+            placeholder="plz type things"
           />
         </div>
       </header>
@@ -81,8 +81,21 @@
         </ul>
       </section>
       <!--统计区域-->
-      <footer class="countLists" id="listsCounter" v-if="todoArr.length!=0">
-        <div class="list-group w-50">
+      <!--v-if="todoArr.length!=0"-->
+      <footer class="countLists" id="listsCounter">
+        <div class="list-group w-50" v-if="todoArr.length!=0">
+          <a href="#" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <small class="mb-1"
+                ><span> {{todoArr.length}} </span> items left</small
+              >
+              <span class="text-muted" @click="clearList">clear</span>
+            </div>
+            <!-- <p class="mb-1">Some placeholder content in a paragraph.</p>
+            <small class="text-muted">And some muted small print.</small> -->
+          </a>
+        </div>
+        <div class="list-group w-50" v-else>
           <a href="#" class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between">
               <small class="mb-1"
