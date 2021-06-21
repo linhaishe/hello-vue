@@ -5,6 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      .box1 {
+        width: 300px;
+        height: 300px;
+        background: red;
+      }
+      .box2 {
+        width: 200px;
+        height: 200px;
+        background: blue;
+      }
+      .box3 {
+        width: 100px;
+        height: 100px;
+        background: green;
+      }
+    </style>
   </head>
   <body>
     <div id="app">
@@ -16,8 +33,19 @@
         value="传参 数据console可见"
         @click="passArgument(111,'hi friends')"
       />
+      <!-- args不能单独不加单引号就传，会被认为是未定义的参数，即必须传入字符串的形式传入 -->
+      <button @click="eventFn(args,$event)">eventFn</button>
 
       <h2 @click="changeFood">{{food}}</h2>
+
+      <!-- 事件冒泡解决方式，使用事件修饰符 stop 是阻止事件冒泡 -->
+      <div id="stopEventbubble" class="box1" @click="eventFn">
+        box1
+        <div class="box2" @click="eventFn">
+          box2
+          <div class="box3" @click.stop="eventFn">box3</div>
+        </div>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
@@ -39,6 +67,10 @@
           },
           passArgument: function (p1, p2) {
             console.log(p1, p2);
+          },
+          eventFn: function (args, event) {
+            console.log(args, event);
+            alert(1);
           },
         },
       });
