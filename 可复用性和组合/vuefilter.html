@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>计数器vue</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{newDate2 | newDateChageBeforVue}}</p>
+      <p>组建内写filter函数</p>
+      <span>{{newDate | newDateChage}}</span>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      //app.filter运行失败
+      //Vue.filter运行成功
+      Vue.filter("newDateChageBeforVue", function renderTime(date) {
+        var dateee = new Date(date).toJSON();
+        return new Date(+new Date(dateee) + 8 * 3600 * 1000)
+          .toISOString()
+          .replace(/T/g, " ")
+          .replace(/\.[\d]{3}Z/, "");
+      });
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          num: 1,
+          newDate: new Date(),
+          newDate2: new Date(),
+        },
+        filters: {
+          newDateChage: function renderTime(date) {
+            var dateee = new Date(date).toJSON();
+            return new Date(+new Date(dateee) + 8 * 3600 * 1000)
+              .toISOString()
+              .replace(/T/g, " ")
+              .replace(/\.[\d]{3}Z/, "");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="lifeCircle">
+      <input type="text" name="" id="" v-model="msg" />
+      <h5>{{msg}}</h5>
+      <button @click="deleteVue">vue实例内销毁</button>
+      <button id="btn">vue实例外销毁</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: "#lifeCircle",
+        data: {
+          a: 1,
+          msg: "text",
+        },
+        methods: {
+          deleteVue: function () {
+            this.$destroy();
+          },
+        },
+        beforeCreate: function () {
+          // `this` 指向 vm 实例
+          console.log("创建前");
+          console.log(this.a, this.deleteVue, this.el);
+        },
+        created: function () {
+          // `this` 指向 vm 实例
+          console.log("创建后");
+          console.log(this.a, this.deleteVue, this.el);
+        },
+        beforeMount: function () {
+          // `this` 指向 vm 实例
+          console.log("挂载前");
+          console.log(this.a, this.deleteVue, this.el);
+        },
+        mounted: function () {
+          // `this` 指向 vm 实例
+          console.log("挂载后");
+          console.log(this.a, this.deleteVue, this.el);
+        },
+        beforeUpdate: function () {
+          // `this` 指向 vm 实例
+          console.log("数据更新前");
+          console.log(this.a, this.deleteVue, this.el);
+        },
+        updated: function () {
+          // `this` 指向 vm 实例
+          console.log("数据更新后");
+          console.log(this.a, this.deleteVue, this.el);
+        },
+        beforeDestroy: function () {
+          // `this` 指向 vm 实例
+          console.log("销毁前");
+          console.log(this.a, this.deleteVue, this.el);
+        },
+        destroyed: function () {
+          // `this` 指向 vm 实例
+          console.log("销毁后");
+          console.log(this.a, this.deleteVue, this.el);
+        },
+      });
+      //操作vue元素要将原生方法写在vue元素后面，因为拿不到数据
+      let btn = document.getElementById("btn");
+      btn.onclick = function () {
+        vm.$destroy();
+      };
+    </script>
+  </body>
+</html>

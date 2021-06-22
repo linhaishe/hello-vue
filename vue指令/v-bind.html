@@ -9,19 +9,30 @@
       .active {
         border: 1px solid red;
       }
+      .static {
+        background-color: green;
+        width: 100px;
+        height: 100px;
+      }
+      .activeDiv {
+        border: 1px solid red;
+      }
+      .text-danger {
+        color: white;
+      }
     </style>
   </head>
   <body>
     <div id="app">
-      <img v-bind:src="imgSrc" alt="" height="300px" width="300px" />
+      <img v-bind:src="imgSrc" alt="" height="100px" width="100px" />
       <br />
       <img
         :src="imgSrc"
         :title="imgTitle+'!!!'"
         :class="isActive?'active':''"
         alt=""
-        height="300px"
-        width="300px"
+        height="100px"
+        width="100px"
         @click="toogleActive"
       />
       <br />
@@ -30,14 +41,52 @@
         :title="imgTitle+'!!!'"
         :class="{active:isActive}"
         alt=""
-        height="300px"
-        width="300px"
+        height="100px"
+        width="100px"
         @click="toogleActive"
       />
 
       <br />
+      <p>三元运算改变class值</p>
       <!-- <img v-bind:class="isActive?'active:''" alt="" />
       <img v-bind:class="{active:isActive}" alt="" /> -->
+      <button @click="btnClick(1)" :class="[sel==1 ? 'active' : '']">
+        btn1</button
+      ><button @click="btnClick(2)" :class="[sel==2 ? 'active' : '']">
+        btn2</button
+      ><button @click="btnClick(3)" :class="[sel==3 ? 'active' : '']">
+        btn3
+      </button>
+      <p>对象语法</p>
+      <p>
+        CSS property 名可以用驼峰式 (camelCase) 或短横线分隔
+        (kebab-case，记得用引号括起来)
+      </p>
+      <p>指令也可以与普通的 class attribute 共存</p>
+
+      <div
+        @click="toogleActive"
+        class="static"
+        v-bind:class="{ activeDiv: isActive, 'text-danger': hasError }"
+      >
+        hasError,使用json对象设置属性
+      </div>
+      <div @click="toogleActive" class="static" v-bind:class="classObject">
+        hasError,绑定的数据对象不必内联定义在模板
+      </div>
+
+      <div
+        @click="toogleActive"
+        class="static"
+        v-bind:class="[activeClass, errorClass]"
+      >
+        hasError,绑定的数据对象不必内联定义在模板
+      </div>
+      <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">
+        v-bind:style
+      </div>
+      <div v-bind:style="styleObject">v-bind:style</div>
+      <div v-bind:style="[baseStyles, overridingStyles]">v-bind:style</div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
@@ -48,10 +97,33 @@
             "https://images.unsplash.com/photo-1565538420870-da08ff96a207?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2250&q=80",
           isActive: false,
           imgTitle: "lovely pic",
+          sel: 0,
+          hasError: true,
+          classObject: {
+            active: true,
+            "text-danger": false,
+          },
+          activeClass: "active",
+          errorClass: "text-danger",
+          activeColor: "red",
+          fontSize: 30,
+          styleObject: {
+            color: "red",
+            fontSize: "13px",
+          },
+          baseStyles: {
+            color: "red",
+          },
+          overridingStyles: {
+            fontSize: "13px",
+          },
         },
         methods: {
           toogleActive: function () {
             this.isActive = !this.isActive;
+          },
+          btnClick: function (val) {
+            this.sel = val;
           },
         },
       });
