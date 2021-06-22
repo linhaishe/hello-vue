@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vuefilter</title>
+    <style>
+      #box1,
+      #box2 {
+        width: 100px;
+        height: 100px;
+        margin-top: 10px;
+      }
+      #box1 {
+        border: 1px solid green;
+      }
+      #box2 {
+        border: 1px solid pink;
+      }
+      .fade-enter-active,
+      .fade-leave-active {
+        transition: opacity 0.5s;
+      }
+      .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p>在 CSS 过渡和动画中自动应用 class</p>
+      <button @click="chageShow">{{isShow?'隐藏':'显示'}}</button>
+      <p>
+        Vue 提供了 transition
+        的封装组件，在下列情形中，可以给任何元素和组件添加进入/离开过渡
+      </p>
+      <transition name="fade">
+        <div id="box1" v-show="isShow"></div>
+      </transition>
+      <div id="box2"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          isShow: true,
+        },
+        methods: {
+          chageShow: function () {
+            this.isShow = !this.isShow;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

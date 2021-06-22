@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="components-demo">
+      <!-- <partialCom-demo></partialCom-demo> -->
+      <Com></Com>
+      <Com2></Com2>
+      <Com3></Com3>
+      <!-- <child-component></child-component>
+      <child-component2></child-component2> -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      //局部
+
+      //   let partialCom = {
+
+      //     template: "<button>You clicked me</button>",
+      //   };
+
+      let child = {
+        template: "<h1>我是局部组件</h1>",
+      };
+
+      let child2 = {
+        template: "<h1>我是局部组件2</h1>",
+      };
+
+      let partial = {
+        template: "<button>test</button>",
+      };
+      new Vue({
+        el: "#components-demo",
+        components: {
+          //这里的partialCom-demo没有起作用，因为语法规则，请使用名称大写规避错误风险
+          //   "partialCom-demo": partialCom,
+          Com: partial,
+          Com2: child,
+          Com3: child2,
+        },
+      });
+
+      //   var child = {
+      //     template: "<h1>我是局部组件</h1>",
+      //   };
+
+      //   new Vue({
+      //     el: "#components-demo",
+      //     components: {
+      //       "child-component": child,
+      //     },
+      //   });
+    </script>
+  </body>
+</html>

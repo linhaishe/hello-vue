@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vuefilter</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    /> -->
+  </head>
+  <body>
+    <div id="app">
+      <button @click="isShow = !isShow">Toggle render</button>
+      <transition
+        name="custom-classes-transition"
+        enter-active-class="animated bounceInDown"
+        leave-active-class="animated bounceInUp"
+      >
+        <p v-if="isShow">hello</p>
+      </transition>
+      <!-- <transition
+        name="custom-classes-transition"
+        enter-active-class="animated animate__backOutRight"
+        leave-active-class="animated animate__backInDown"
+      >
+       <p v-if="isShow">4.1.1版本的效果无法显示</p>
+        <p v-if="isShow">hello</p>
+      </transition> -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          isShow: true,
+        },
+        methods: {
+          chageShow: function () {
+            this.isShow = !this.isShow;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
