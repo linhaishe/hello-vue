@@ -14,13 +14,17 @@
   </body>
 </html>
 <script>
-  //slot方法传递h5 数据,确定要传的数据的位置
+  //slot方法传递h5 数据,确定要传的数据的位置,只在传递h5标签数据的时候用，其他的时候不用
   Vue.component("child", {
+    //根据name和v-slot相同的属性放置对应的位置里
+    //没有用template包裹的数据，且没有v-slot写明属性，则默认为v-slot:default,且在子组件中添加时，使用<slot></slot>，则默认时添加没有v-slot属性和没有template包裹或者是仅有template包裹但没有填写v-slot属性的内容
+    //但是建议所有插槽标签都用template包裹起来
     template: `
             <div>
-                <slot name='data1' :msg="msg"></slot>
+                <slot name='data1'></slot>
                 <h2>我是子组件</h2>
                 <slot name='data2'></slot>
+                <slot></slot>
             </div>
         `,
     data: function () {
@@ -30,15 +34,19 @@
     },
   });
   let parent = {
+    //用v-slot注明template是哪个
     template: `
             <div>
                 <h1>我是父组件</h1>
                 <child>
-                    <template v-slot:data1="aaa">
-                        <div>我是父组件的标签数据1</div>  
+                    <template v-slot:data1>
+                        <div>我是父组件中的子组件里的新数据1</div>  
+                    </template>
+                    <template>
+                    <div>我是父组件中的子组件里的没有template包裹的数据</div>  
                     </template>
                     <template v-slot:data2>
-                        <div>我是父组件的标签数据2</div>  
+                      <div>我是父组件中的子组件里的新数据2</div>  
                     </template>
                 </child>  
             </div>

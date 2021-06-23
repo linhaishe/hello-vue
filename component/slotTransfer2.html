@@ -14,12 +14,13 @@
   </body>
 </html>
 <script>
-  //slot方法传递h5 数据,确定要传的数据的位置
+  //通过slot传递数据,从父组件通过slot标签传递数据给子组件
   Vue.component("child", {
     template: `
             <div>
-                <slot name='data1' :msg="msg"></slot>
+                <slot name='data1'></slot>
                 <h2>我是子组件</h2>
+                <p>{{parentMsg}}从父组件中里的template的数据传递</p>
                 <slot name='data2'></slot>
             </div>
         `,
@@ -28,24 +29,25 @@
         msg: "我是子组件数据",
       };
     },
+    props: ["parentMsg"],
   });
   let parent = {
     template: `
             <div>
                 <h1>我是父组件</h1>
-                <child>
-                    <template v-slot:data1="aaa">
-                        <div>我是父组件的标签数据1</div>  
+                <child :parent-msg="msg">
+                    <template v-slot:data1>
+                        <div>我是父组件的标签数据1 v-slot:data1</div>  
                     </template>
                     <template v-slot:data2>
-                        <div>我是父组件的标签数据2</div>  
+                        <div>我是父组件的标签数据2 v-slot:data2</div>  
                     </template>
                 </child>  
             </div>
         `,
     data: function () {
       return {
-        msg: "我是父组件的数据",
+        msg: "我是父组件的数据1111111",
       };
     },
   };
