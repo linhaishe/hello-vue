@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="components-demo">
+      <p>
+        <a href="https://book.vue.tw/CH2/2-2-communications.html">refs link</a>
+      </p>
+      <parent></parent>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      //父子组件互相获取数据，通过this.$parent and this.$children[0].xxx
+      let childNode = {
+        template: `
+        <div>
+            <p>我是子组件</p>
+            <button @click="getParentValue">获取父组件数据</button>
+        </div>
+        `,
+        data: function () {
+          return { msg: "这是子组件msg", age: 18 };
+        },
+        methods: {
+          //子组件获取父组件数据
+          getParentValue() {
+            //返回的是对象
+            console.log(this.$parent.msg);
+          },
+        },
+      };
+
+      //父组件
+      let parent = {
+        template: `
+        <div>
+            <p>我是父组件的h1,父组件的msg为：{{msg}}</p>
+            <childNode></childNode>
+            <button @click="getChildValue">获取子组件数据</button>
+
+        </div>`,
+        data: function () {
+          return { msg: "这是父组件msg", age: 18 };
+        },
+        methods: {
+          //父组件获取子组件数据
+          getChildValue() {
+            //返回的是数组
+            console.log(this.$children[0].msg);
+          },
+        },
+      };
+
+      Vue.component("childNode", childNode);
+
+      new Vue({
+        el: "#components-demo",
+        components: { parent },
+      });
+    </script>
+  </body>
+</html>

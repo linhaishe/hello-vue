@@ -10,10 +10,17 @@
     <div id="components-demo">
       <button-counter></button-counter>
       <button-counter></button-counter>
+      <!-- <Btncounter></Btncounter> -->
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
       //全局组件
+      // let Btncounter = {
+      //   template: "<h1>我全局组件</h1>",
+      // };
+
+      //子元件的 data 必須是函數
+      /*像這樣，每個子元件應該要有各自的狀態，但由於它們共用了同一份 data，此時只要其中一個子元件的狀態被更新，便會影響到其他的子元件。 所以為了避免子元件之間的資料互相污染，Vue.js 強制規定子元件內的 data 屬性必須是以 function 的形式來輸出新的物件。*/
       Vue.component("button-counter", {
         data: function () {
           return {
@@ -24,8 +31,16 @@
           '<button v-on:click="count++">You clicked me {{ count }} times.</button>',
       });
 
+      // Vue.component("Btncounter", Btncounter);
+
+      //Invalid Component definition: button-counter wrong!
+      // Vue.component("button-counter", "button-counter");
+
       new Vue({
         el: "#components-demo",
+        component: {
+          "button-counter": "button-counter",
+        },
       });
     </script>
   </body>
