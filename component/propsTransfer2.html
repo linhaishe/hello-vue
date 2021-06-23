@@ -28,7 +28,8 @@
           return { childMsg: "我是子组件的数据" };
         },
         mounted() {
-          this.$emit("ev", this.childMsg);
+          //this.$emit("ev", this.childMsg);
+          this.$emit("ev", "lalalalalalal");
         },
       };
 
