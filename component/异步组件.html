@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <style>
+      .active {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <com1></com1>
+      <com2></com2>
+    </div>
+  </body>
+</html>
+<script>
+  let p = new Promise(function () {});
+  Vue.component("com1", { template: "<div>内容1</div>" });
+  Vue.component("com2", function (resolve, reject) {
+    setTimeout(() => {
+      resolve({
+        template: "<div>内容2</div>",
+      });
+    }, 1000);
+  });
+  new Vue({
+    el: "#app",
+    data: {},
+  });
+</script>

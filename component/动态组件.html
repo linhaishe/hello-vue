@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <style>
+      .active {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="sel=1">aaa</button>
+      <button @click="sel=2">bbb</button>
+      <button @click="sel=3">ccc</button>
+
+      <!-- <com1 :class="[sel==1?'':'active']"></com1>
+        <com2 :class="[sel==2?'':'active']"></com2>
+        <com3 :class="[sel==3?'':'active']"></com3> -->
+      <keep-alive>
+        <component :is="sel==1?'com1':sel==2?'com2':'com3'"></component>
+      </keep-alive>
+
+      <!-- 
+            上面这种写法，相当于把组件删除，再添加。如果这个组件里面因为操作产生了数据，再次切换的时候数据没了
+            keep-alive 把切换的组件缓存起来
+         -->
+    </div>
+  </body>
+</html>
+<script>
+  Vue.component("com1", { template: "<div>内容1</div>" });
+  Vue.component("com2", { template: "<div>内容2</div>" });
+  Vue.component("com3", { template: "<div>内容3</div>" });
+  new Vue({
+    el: "#app",
+    data: {
+      sel: 1, //  1 2 3
+    },
+    computed: {
+      comName: function () {
+        if (this.sel == 1) {
+          return "com1";
+        } else if (this.sel == 2) {
+          return "com2";
+        } else {
+          return "com3";
+        }
+      },
+    },
+  });
+</script>
