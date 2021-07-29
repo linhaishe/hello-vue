@@ -23,6 +23,17 @@
         props: ["postTitle"],
       };
 
+      // props的属性定义也可以用对象,用于确定属性的值
+      //       props: {
+      //   title: String,
+      //   likes: Number,
+      //   isPublished: Boolean,
+      //   commentIds: Array,
+      //   author: Object,
+      //   callback: Function,
+      //   contactsPromise: Promise // or any other constructor
+      // }
+
       new Vue({
         el: "#components-demo",
         components: {
