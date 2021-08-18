@@ -6,6 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+  <style>
+    .box1,
+    .box2 {
+      border: 1px solid #000;
+      height: 100px;
+      width: 100px;
+    }
+
+    .box1 {
+      border: 1px solid #000;
+      background-color: #000;
+    }
+    .box2 {
+      border: 1px solid pink;
+      background-color: pink;
+    }
+  </style>
   <body>
     <div id="app">
       <input type="button" value="切换显示状态" @click="toogleIsShow" />
@@ -22,6 +39,13 @@
       </p>
 
       <h2 v-if="temperature>=35">使用表达式判断,热死了</h2>
+
+      <input type="button" value="tab1" @click="switchTab" />
+      <input type="button" value="tab2" @click="switchTab" />
+      <div class="boxes">
+        <div class="box1" v-if="box1"></div>
+        <div class="box2" v-if="box2"></div>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
@@ -30,6 +54,8 @@
         data: {
           isShow: false,
           temperature: 34,
+          box1: true,
+          box2: false,
         },
         methods: {
           toogleIsShow: function () {
@@ -37,6 +63,10 @@
           },
           addTem: function () {
             this.temperature++;
+          },
+          switchTab: function () {
+            this.box1 = !this.box1;
+            this.box2 = !this.box2;
           },
         },
       });
